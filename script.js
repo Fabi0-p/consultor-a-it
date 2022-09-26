@@ -72,6 +72,7 @@ let registrando = true;
 function registrar(){
     if(registrando){
 	const nombre = $("#nombre").val();
+	const correo = $("#correo").val();
 	const contrasena = $("#contrasena").val();
 	const contrasena2 = $("#contrasena2").val();
 	console.log(nombre);
@@ -80,6 +81,7 @@ function registrar(){
 		if(contrasena === contrasena2){
 		    if(contrasena.length >= 4){
 			setCookie("usuario", nombre);
+			setCookie("correo", correo);
 			alert("Registrado");
 			window.location.href = "pagina_principal.html";
 		    }
@@ -121,3 +123,8 @@ function iniciar_sesion(){
     }
 }
 
+function cerrar_sesion(){
+    setCookie("usuario", "");
+    setCookie("correo", "");
+    window.location.href = "iniciar_sesion.html";
+}

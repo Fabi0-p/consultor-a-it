@@ -14,37 +14,31 @@
   <body>
     <header> </header>
     <main id="main" class="container-fluid row justify-content-center align-items-center flex-column">
-      <!--
-	  <div id="ventana_login" class="container rounded shadow d-flex flex-column col-12 col-sm-10 col-md-6 col-lg-5">
-	    <form id="iniciar_sesion" class="d-inline-block">
+
+      <form id="ventana_login" class="container rounded shadow d-flex flex-column col-12 col-sm-10 col-md-6 col-lg-5">
+	<label for="nombre" id="nombre_label" class="form-label"> Nombre de usuario </label>
+	<input type="text" placeholder="Nombre de usuario" name="nombre" id="nombre" class="form-control" required>
+	<br>
+	<label for="contrasena" id="contrasena_label" class="form-label"> Contraseña </label>
+	<input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" class="form-control" required>
+	<br class="registro">
+	<label for="contraseña2" id="contrasena2_label" class="form-label registro"> Repetir Contraseña </label>
+	<input type="password" placeholder="Contraseña" name="contrasena2" id="contrasena2" class="form-control registro" required>
+	<br class="registro">
+	<label for="correo" id="correo_label" class="form-label registro"> Correo Electrónico </label>
+	<input type="email" placeholder="nombre@ejemplo.com" name="correo" id="correo" class="form-control registro" required>
+	<br>
+	
+	<br>
+	<br>
+	<br>
+	<div id="form_botones" class="d-flex justify-content-center">
+	  <div class="btn-group-vertical justify-content-center" id="grupo_botones"> 
+	    <button type="button" id="btn_registrar" onclick="registrar()" class="btn btn-secondary"> Registrarse </button>
+	    <button type="button" id="btn_iniciar_sesion" onclick="iniciar_sesion()" class="btn btn-outline-primary"> Iniciar Sesión </button>
 	  </div>
-	  -->
-	  <form id="ventana_login" class="container rounded shadow d-flex flex-column col-12 col-sm-10 col-md-6 col-lg-5">
-	    <label for="nombre" id="nombre_label" class="form-label"> Nombre de usuario </label>
-	    <input type="text" placeholder="Nombre de usuario" name="nombre" id="nombre" class="form-control" required>
-	    <br>
-	    <label for="contrasena" id="contrasena_label" class="form-label"> Contraseña </label>
-	    <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" class="form-control" required>
-	    <br class="registro">
-	    <label for="contraseña2" id="contrasena2_label" class="form-label registro"> Repetir Contraseña </label>
-	    <input type="password" placeholder="Contraseña" name="contrasena2" id="contrasena2" class="form-control registro" required>
-	    <br class="registro">
-	    <label for="correo" id="correo_label" class="form-label registro"> Correo Electrónico </label>
-	    <input type="email" placeholder="nombre@ejemplo.com" name="correo" id="correo" class="form-control registro" required>
-	    <br>
-	    <br>
-	    <br>
-	    <br>
-	    <div id="form_botones" class="d-flex justify-content-center">
-	      <div class="btn-group-vertical justify-content-center" id="grupo_botones"> 
-		<button type="button" id="btn_registrar" onclick="registrar()" class="btn btn-secondary"> Registrarse </button>
-		<button type="button" id="btn_iniciar_sesion" onclick="iniciar_sesion()" class="btn btn-outline-primary"> Iniciar Sesión </button>
-	      </div>
-	      <!--
-		  </div>
-	    -->
-	  </form>
-      </div>
+	</div>
+      </form>
     </main>
     <footer> </footer>
     <script src="header_footer.js"> </script>

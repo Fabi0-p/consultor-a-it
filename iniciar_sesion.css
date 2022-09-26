@@ -13,5 +13,5 @@
 }
 
 .btn-group, .btn-group-vertical{
-    width: calc(100% - 3em);
+    width: calc(100% - 2em);
 }

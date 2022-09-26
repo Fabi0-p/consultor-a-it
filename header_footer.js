@@ -24,6 +24,7 @@ $("document").ready(() => {
     $("footer").replaceWith(footer);
     if(getCookie("usuario") != ""){
 	$("#iniciar_sesion").text(getCookie("usuario"));
+	$("#iniciar_sesion").attr("href", "mi_perfil.html");
 	$("#navbar-pedidos").addClass("d-lg-block");
     }
 });

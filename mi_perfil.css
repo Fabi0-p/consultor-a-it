@@ -1,0 +1,18 @@
+#ventana_perfil{
+    background-color: #FFF;
+    margin-top: 1em;
+    padding: 1em;
+}
+
+.form_botones{
+    left: 0em;
+    width: 100%;
+    padding: 0;
+}
+
+.btn-group, .btn-group-vertical{
+    width: calc(100% - 3em);
+}
+
+
+    
