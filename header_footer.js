@@ -5,7 +5,7 @@ const header = `
     <a href="iniciar_sesion.html" id="iniciar_sesion" class="d-none d-sm-block m-3 col-lg col-xl col-sm col-md col btn btn-primary"> Iniciar Sesión</a>
     <nav class="col-12 d-flex flex-row justify-content-center justify-content-lg-center justify-content-sm-start align-items-stretch" id="navbar">
     <i class="fa-solid fa-bars d-block d-lg-none p-3" id="navbar-button" onclick="desplegarNavbar()"> </i>
-      <a class="navlink d-none d-lg-block py-2 px-2 px-lg-4" href="pagina_principal.html"> Página Principal </a>
+      <a class="navlink d-none d-lg-block py-2 px-2 px-lg-4" href="pagina_principal.html"> <i class="fa-solid fa-house"> </i> Página Principal </a>
       <a class="navlink d-none d-lg-block py-2 px-2 px-lg-4" href="front_end.html"> Programación Web Front End </a>
       <a class="navlink d-none d-lg-block py-2 px-2 px-lg-4" href="back_end.html"> Programación Web Back End </a>
       <a class="navlink d-none d-lg-block py-2 px-2 px-lg-4" href="programacion_otros.html"> Programación (Otros) </a>

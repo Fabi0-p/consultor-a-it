@@ -17,7 +17,8 @@
     <main id="main" class="container-fluid d-flex align-items-center flex-column d-sm-block">
       <br>
       <br>
-      <form id="form-pedido" class="container rounded shadow d-flex flex-column col-12 col-sm-10 col-md-6 col-lg-5">
+      <form id="form-pedido" class="container rounded shadow d-flex flex-column col-12 col-sm-11 col-md-8 col-lg-6 col-xl-5">
+	<h3> Agregar Pedido </h3>
 	<label for="categoria" id="categoria_label" class="form-label"> Categoría </label>
 	<select placeholder="Categoría..." name="categoria" id="categoria" class="form-control" required>
 	  <option> Front-End </option>	  
@@ -28,13 +29,17 @@
 	<label for="titulo_pedido" id="titulo_pedido_label" class="form-label"> Título </label>
 	<input type="text" placeholder="Título" name="titulo_pedido" id="titulo_pedido" class="form-control m-0" required>
 	<br>
+	<div id="alerta_titulo" class="alerta"></div>
 	<label for="texto" id="texto_label" class="form-label"> Descripción del pedido </label>
-	<textarea placeholder="Descripción del pedido" name="texto" id="texto" class="form-control" required> </textarea>
+	<textarea placeholder="Descripción del pedido" name="texto" id="texto" class="form-control" required></textarea>
 	<br>
-	<button type="button" id="btn_registrar" onclick="enviarPedido()" class="btn btn-primary"> Enviar </button>
+	<div id="alerta_texto" class="alerta"></div>
+	<button type="button" id="btn_registrar" onclick="enviarPedido()" class="btn btn-primary"> <i class="fa-solid fa-circle-plus"> </i> Agregar </button>
       </form>
       <br>
-      <div class="row justify-content-center" id="tarjetas">
+      <div class="container-fluid m-3">
+	<h3> Tus pedidos </h3>
+	<div class="row justify-content-center w-100" id="tarjetas"> </div>
       </div>
       <br>
     </main>

@@ -19,7 +19,7 @@ function crearTarjeta(pedido){
 	    <div class="card-body">
 	      <h4 class="card-title"> ${pedido.titulo} </h4>
 	      <p class="card-text"> ${pedido.texto} </p>
-	      <button onclick="eliminarTarjeta('tarjeta-${idCount}')" class="btn btn-danger"> Eliminar pedido </button>
+	      <button onclick="eliminarTarjeta('tarjeta-${idCount}')" class="btn btn-danger"> <i class="fa-solid fa-trash"> </i> Eliminar pedido </button>
 	    </div>
 	  </div>
 	</div>
@@ -67,13 +67,33 @@ function enviarPedido(){
     const titulo = $("#titulo_pedido").val();
     const tipo = $("#categoria option:selected").text();
     //if(titulo.length > 1 && texto.length > 1){
-	if(/\w+/.test(texto) && /\w+/.test(titulo)){
-		$("#texto").val("");
-		$("#titulo_pedido").val("");
-		const elemento = crearTarjeta(Pedido(tipo, titulo, texto));
-		console.log(elemento);
-		pedidos.push(elemento);
-		$("#tarjetas").append(elemento.elemento);
+    let exito = true;
+
+    
+    
+    $(".alerta").empty();
+    if((!/\w+/.test(texto)) && texto.length > 0){
+	exito = false;
+	alertar("#alerta_texto", "La descripción debe contener caracteres alfanuméricos", "danger", "fa-solid fa-triangle-exclamation");
     }
-	else alert("Los campos están incompletos");
+    if(texto.length < 1){
+	exito = false;
+	alertar("#alerta_texto", "La descripción no puede estar vacía", "danger", "fa-solid fa-triangle-exclamation");
+    }
+    if((!/\w+/.test(titulo)) && titulo.length > 0){
+	exito = false;
+	alertar("#alerta_titulo", "El título del pedido debe contener caracteres alfanuméricos", "danger", "fa-solid fa-triangle-exclamation");
+    }
+    if(titulo.length < 1){
+	exito = false;
+	alertar("#alerta_titulo", "El título del pedido no puede estar vacío", "danger", "fa-solid fa-triangle-exclamation");
+    }
+    
+    if(exito){
+	$("#texto").val("");
+	$("#titulo_pedido").val("");
+	const elemento = crearTarjeta(Pedido(tipo, titulo, texto));
+	pedidos.push(elemento);
+	$("#tarjetas").append(elemento.elemento);
+    }
 }
