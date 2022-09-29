@@ -1,5 +1,12 @@
+:root{
+    --color-fondo: #ddebff;
+    --color-oscuro: #303040;
+    --color-azul: #0d6efd;
+}
+
 body{
-    background-color: #D9D0D0;
+    background-color: var(--color-fondo);
+    color: var(--color-oscuro);
     font-size: 12pt;
     padding: 0;    
     min-height: 100vh;
@@ -7,21 +14,20 @@ body{
     padding-bottom: 15vh;
 }
 
-#main{
-
+#titulo{
+    color: black;    
 }
 
 #iniciar_sesion{
-    margin: 0.5em;
     max-height: 3em;
 }
 
 #header{
-    background-color: #B9B0B0;
+    background-color: var(--color-fondo);
     margin: 0;
     padding-left: 0;
     padding-right: 0;
-    border-bottom: 0.2em solid black;
+    border-bottom: 0.2em solid var(--color-oscuro);
 }
 
 @media (max-width: 575.98px) {
@@ -30,22 +36,24 @@ body{
     }
 }
 
-#titulo{
-    margin: 0.5em;
-}
-
 #navbar{
     margin: 0;
     width: 100%;
     padding-left: 0;
     padding-right: 0;
-    background-color: #A9A0A0;
-    border-top: #595050 solid 0.2em;
+    background-color: var(--color-oscuro);
+    color: white;
     text-align: center;
 }
 
+.navlink{
+    color: white;
+    height: 100%;
+}
+
 .navlink:hover, #navbar-button:hover{
-    background-color: #999090;
+    background-color: var(--color-azul);
+    color: black;
 }
 
 #navbar-button{
@@ -79,8 +87,8 @@ a:hover{
 .item-seccion{
     display: block;
     padding: 0;
-    border: 0.2em solid black;
-    background-color: #C9C0C0;
+    border: 0.2em solid var(--color-azul);
+    background-color: var(--color-fondo);
     aspect-ratio: 1;
 }
 
@@ -115,7 +123,8 @@ a:hover{
 }
 
 .item-seccion-titulo{
-    background-color: #B9B0B0;
+    background-color: var(--color-azul);
+    color: black;
     width: 100%;
     text-align: center;
     font-size: 1.3em;
@@ -135,10 +144,21 @@ a:hover{
     min-height: initial;
     margin-top: 1em;
     padding: 1em;
-    background-color: #A9A0A0;
-    border-top: #000 solid 0.2em;    
+    background-color: var(--color-oscuro);
+    border-top: var(--color-azul) solid 0.2em;
+    color: white;
     position: absolute;
     bottom: 0px;
+}
+
+.footer-link{
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-link:hover{
+    color: var(--color-azul);
+    text-decoration: underline;
 }
 
 .width-100{

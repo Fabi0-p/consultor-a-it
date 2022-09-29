@@ -1,3 +1,6 @@
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 let viewportHeight = window.innerHeight;
 let viewportWidth = window.innerWidth;
 
@@ -20,21 +23,22 @@ function getCookie(cname) {
     }
     return "";
 }
+/*
+  function resize_botones(){
+  if(window.innerWidth < 576){
+  $("#grupo_botones").addClass("btn-group-vertical");
+  $("#grupo_botones").removeClass("btn-group");
+  }
+  else{
+  $("#grupo_botones").removeClass("btn-group-vertical");
+  $("#grupo_botones").addClass("btn-group");
+  }
+  }
+  $(window).resize(resize_botones);
+*/
 
-function resize_botones(){
-   if(window.innerWidth < 576){
-	$("#grupo_botones").addClass("btn-group-vertical");
-	$("#grupo_botones").removeClass("btn-group");
-    }
-    else{
-	$("#grupo_botones").removeClass("btn-group-vertical");
-	$("#grupo_botones").addClass("btn-group");
-    }
-}
-
-$(window).resize(resize_botones);
 $(document).ready(() => {
-    resize_botones();
+    //resize_botones();
     if(getCookie("usuario") != ""){
     }
 });
@@ -50,7 +54,7 @@ $(document).ready(() => {
  */
 let navbarDesplegada = false;
 
-function desplegarNavbar(){    
+function desplegarNavbar(){
     $(".navlink").toggleClass("d-block");
     $(".navlink").toggleClass("d-none");
     $(".navlink").toggleClass("align-self-start");
@@ -59,7 +63,12 @@ function desplegarNavbar(){
     $("#navbar").toggleClass("align-items-start");
     $("#navbar").toggleClass("text-center");    
     $("#navbar-button").toggleClass("width-100");
-    if(getCookie("usuario") == "") $("#navbar-pedidos").addClass("d-none");
+    if(getCookie("usuario") == "") $("#navbar-pedidos").addClass("d-none");	
+	if(window.innerWidth < 576){
+		if(!navbarDesplegada) $("#navbar-perfil").removeClass("d-none");
+	}
+	else $("#navbar-perfil").addClass("d-none");
+	if(navbarDesplegada) $("#navbar-perfil").addClass("d-none");
     navbarDesplegada = !navbarDesplegada;
 }
 
@@ -69,57 +78,102 @@ $(window).resize(() => {
 
 let registrando = true;
 
+function alertar(objetivo, mensaje, tipo, icon){
+    const contenido = `<div class="alert alert-${tipo}"> <i class="${icon}"> </i> ${mensaje} </div>`;
+    $(objetivo).append(contenido);
+}
+
+function tab_registrar(){
+    $(".alerta").empty();
+    if(!registrando){	
+	$(".registro").removeClass("d-none");	
+	$(".registro").addClass("d-block");
+	$("#btn_tab_iniciar_sesion").toggleClass("btn-outline-primary");
+	$("#btn_tab_iniciar_sesion").toggleClass("btn-primary");
+	$("#btn_tab_registrar").toggleClass("btn-outline-primary");
+	$("#btn_tab_registrar").toggleClass("btn-primary");
+	$("#btn_iniciar_sesion").toggleClass("d-none");
+	$("#btn_iniciar_sesion").toggleClass("d-block");
+	$("#btn_registrar").toggleClass("d-none");
+	$("#btn_registrar").toggleClass("d-block");
+	registrando = true;
+    }
+}
+
+function tab_iniciar_sesion(){
+    $(".alerta").empty();
+    if(registrando){
+	$(".registro").addClass("d-none");	
+	$(".registro").removeClass("d-block");
+	$("#btn_tab_iniciar_sesion").toggleClass("btn-outline-primary");
+	$("#btn_tab_iniciar_sesion").toggleClass("btn-primary");
+	$("#btn_tab_registrar").toggleClass("btn-outline-primary");
+	$("#btn_tab_registrar").toggleClass("btn-primary");
+	$("#btn_iniciar_sesion").toggleClass("d-none");
+	$("#btn_iniciar_sesion").toggleClass("d-block");
+	$("#btn_registrar").toggleClass("d-none");
+	$("#btn_registrar").toggleClass("d-block");
+	registrando = false;
+    }
+}
+
 function registrar(){
+    $(".alerta").empty();
     if(registrando){
 	const nombre = $("#nombre").val();
 	const correo = $("#correo").val();
 	const contrasena = $("#contrasena").val();
 	const contrasena2 = $("#contrasena2").val();
-	console.log(nombre);
-	if(nombre.length < 40){
-	    if(nombre.length >= 4){
-		if(contrasena === contrasena2){
-		    if(contrasena.length >= 4){
-			setCookie("usuario", nombre);
-			setCookie("correo", correo);
-			alert("Registrado");
-			window.location.href = "pagina_principal.html";
-		    }
-		    else alert("La contraseña es demasiado corta");
-		}
-		else alert("Las contraseñas no coinciden");
-	    }
-	    else alert("El nombre de usuario es demasiado corto");	    
+	let exito = true;
+	if(nombre.length > 40){
+	    exito = false;
+	    alertar("#alerta_nombre", "El nombre de usuario es demasiado largo", "danger", "fa-solid fa-triangle-exclamation");
+	}	   
+	if(nombre.length < 4){
+	    exito = false;
+	    alertar("#alerta_nombre", "El nombre de usuario es demasiado corto", "danger", "fa-solid fa-triangle-exclamation");
 	}
-	else alert("El nombre de usuario es demasiado largo");
-    }
-    else{
-	$(".registro").removeClass("d-none");	
-	$(".registro").addClass("d-block");
-	$("#btn_iniciar_sesion").toggleClass("btn-outline-primary");
-	$("#btn_iniciar_sesion").toggleClass("btn-primary");
-	$("#btn_registrar").toggleClass("btn-outline-secondary");
-	$("#btn_registrar").toggleClass("btn-secondary");	
-	registrando = true;
+	if(contrasena != contrasena2){
+	    exito = false;
+	    alertar("#alerta_contrasena2", "Las contraseñas no coindiden", "danger", "fa-solid fa-triangle-exclamation");
+	}
+	if(contrasena.length < 4){
+	    exito = false;
+	    alertar("#alerta_contrasena", "La contraseña es demasiado corta", "danger", "fa-solid fa-triangle-exclamation");
+	}
+	if(!/^\w+\@\w+\.\w+$/.test(correo)){
+	    exito = false;
+	    alertar("#alerta_correo", "La dirección de correo electrónico no es válida", "danger", "fa-solid fa-triangle-exclamation");
+	}
+	
+	if(exito){
+	    setCookie("usuario", nombre);
+	    setCookie("correo", correo);	
+	    window.location.href = "pagina_principal.html";
+	}
     }
 }
 
 function iniciar_sesion(){
+    $(".alerta").empty();
     if(!registrando){
+	let exito = true;
 	const nombre = $("#nombre").val();
-	if(nombre.length >= 4){
+	const contrasena = $("#contrasena").val();
+	
+	if(nombre.length < 4){
+	    exito = false;
+	    alertar("#alerta_nombre", "El nombre de usuario no es válido (debe contener al menos 4 caracteres)", "danger", "fa-solid fa-triangle-exclamation");
+	}
+	if(contrasena.length < 4){
+	    exito = false;
+	    alertar("#alerta_contrasena", "El nombre de usuario o contraseña son incorrectos", "danger", "fa-solid fa-triangle-exclamation");
+	}
+
+	if(exito){
 	    setCookie("usuario", nombre);
 	    window.location.href = "pagina_principal.html";
 	}
-    }
-    else{
-	$(".registro").addClass("d-none");	
-	$(".registro").removeClass("d-block");
-	$("#btn_iniciar_sesion").toggleClass("btn-outline-primary");
-	$("#btn_iniciar_sesion").toggleClass("btn-primary");
-	$("#btn_registrar").toggleClass("btn-outline-secondary");
-	$("#btn_registrar").toggleClass("btn-secondary");
-	registrando = false;
     }
 }
 
@@ -128,3 +182,4 @@ function cerrar_sesion(){
     setCookie("correo", "");
     window.location.href = "iniciar_sesion.html";
 }
+

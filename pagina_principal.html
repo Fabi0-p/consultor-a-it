@@ -14,26 +14,28 @@
   </head>
   <body>
     <header> </header>
-    <main id="main" class="container-fluid d-flex align-items-center flex-column d-sm-block">
+    <main id="main" class="p-0 container-fluid d-flex align-items-center flex-column d-sm-block">
       <br>
-      <h2> Bienvenido a Consultoría IT </h2>
-      <p id="eslogan"> Tus problemas, nuestras soluciones </p>
-      <br>
-      <p> Si necesitás desarrollar una página web, una aplicación, o un sistema de alguna otra rama no dudes en consultarnos</p>
-      <div class="container-fluid row g-3 justify-content-center">
-        <div class="col-12 col-xl-3 col-md-4 col-sm-6">
+      <div class="container m-3">
+        <h2> Bienvenido a Consultoría IT </h2>
+        <p id="eslogan"> Tus problemas, nuestras soluciones </p>
+        <br>
+        <p> Si necesitás desarrollar una página web, una aplicación, o un sistema de alguna otra rama no dudes en consultarnos</p>
+      </div>
+      <div class="container-fluid row px-0 w-auto mx-2 g-3 justify-content-center">
+        <div class="col-12 col-lg-3 col-md-4 col-sm-6">
           <a href="front_end.html" class="item-seccion container d-flex flex-column align-items-center justify-content-center">
             <p class="item-seccion-titulo"> Front-End </p>
             <img class="img-fluid item-seccion-img" alt="Front-End" src="recursos/html-logo.png">
           </a>                        
         </div>
-        <div class="col-12 col-xl-3 col-md-4 col-sm-6">
+        <div class="col-12 col-lg-3 col-md-4 col-sm-6">
           <a href="back_end.html" class=" item-seccion container d-flex flex-column align-items-center justify-content-center">
             <p class="item-seccion-titulo"> Back-End </p>
             <img class="img-fluid item-seccion-img" alt="Back-End" src="recursos/php-logo.png">
           </a>                        
         </div>
-        <div class="col-12 col-xl-3 col-md-4 col-sm-6">
+        <div class="col-12 col-lg-3 col-md-4 col-sm-6">
           <a href="programacion_otros.html" class="item-seccion container d-flex flex-column align-items-center justify-content-center">
             <p class="item-seccion-titulo"> Otros </p>
             <img class="img-fluid item-seccion-img" alt="Otros" src="recursos/cpp-logo.png">
@@ -43,7 +45,12 @@
       <br>
       <div class="row">
 	<div class="col"> </div>
-	<a class="btn btn-primary btn-block col-10" href="#"> Iniciar Sesión </a>
+  <script>
+    if(getCookie("usuario") == ""){
+      document.write(`
+	<a class="btn btn-primary btn-block col-10" href="iniciar_sesion.html"> Iniciar Sesión </a>`);
+    }
+  </script>
 	<div class="col"> </div>
       </div>
       <br>

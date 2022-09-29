@@ -4,27 +4,76 @@ if(getCookie("usuario") == ""){
 
 function Pedido(tipo, titulo, texto){
     return {
-	tipo: tipo,
-	titulo: titulo,
-	texto: texto
+		tipo: tipo,
+		titulo: titulo,
+		texto: texto
     };
 }
-
+let idCount = 0;
 function crearTarjeta(pedido){
+	idCount++;
     const elemento = `
-
-	<div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-12">
+	<div id="tarjeta-${idCount}" class="p-1 col-xl-3 col-lg-4 col-md-5 col-sm-6 col-12">
 	  <div class="card">
 	    <div class="card-header"> ${pedido.tipo} </div>
 	    <div class="card-body">
 	      <h4 class="card-title"> ${pedido.titulo} </h4>
 	      <p class="card-text"> ${pedido.texto} </p>
-	      <button class="btn btn-danger"> Eliminar pedido </button>
+	      <button onclick="eliminarTarjeta('tarjeta-${idCount}')" class="btn btn-danger"> Eliminar pedido </button>
 	    </div>
 	  </div>
 	</div>
 `
+    return {elemento, idCount};
 }
 
 let pedidos = [];
+/*
+for(let i = 0; i < 10; i++){
+    pedidos.push(crearTarjeta(Pedido("Back-End", "Página", "Hacer una página de coso")));
+    pedidos.push(crearTarjeta(Pedido("Ejemplo", "Titulo de ejemplo", "Texto")));
+    pedidos.push(crearTarjeta(Pedido("tipo", "Titulo", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")));
+}
+*/
 
+pedidos.push(crearTarjeta(Pedido("Front End", "Pedido de ejemplo", "Hacer una página web que haga algo y sirva de ejemplo")));
+pedidos.push(crearTarjeta(Pedido("Back End", "Servidor de ejemplo", "Hacer una servidor web que haga algo y sirva de ejemplo")));
+pedidos.push(crearTarjeta(Pedido("Multidisciplina", "Programa de ejemplo", "Hacer un progrma que haga algo y sirva de ejemplo")));
+
+$(document).ready(() => {
+    for(let i = 0; i < pedidos.length; i++){
+		$("#tarjetas").append(pedidos[i].elemento);
+    }
+});
+
+function eliminarTarjeta(id){
+    $("#" + id).remove();
+    let eliminar = pedidos.map((elem2, index) => {
+		if(elem2.id == id){
+			console.log(index);
+			return index;
+		}
+		else return -1;
+    });
+    eliminar = eliminar.filter((elem1) => {
+		return elem1 >= 0;
+    });
+    console.log(eliminar);
+    pedidos.splice(eliminar[0], 1);
+}
+
+function enviarPedido(){
+    const texto = $("#texto").val();
+    const titulo = $("#titulo_pedido").val();
+    const tipo = $("#categoria option:selected").text();
+    //if(titulo.length > 1 && texto.length > 1){
+	if(/\w+/.test(texto) && /\w+/.test(titulo)){
+		$("#texto").val("");
+		$("#titulo_pedido").val("");
+		const elemento = crearTarjeta(Pedido(tipo, titulo, texto));
+		console.log(elemento);
+		pedidos.push(elemento);
+		$("#tarjetas").append(elemento.elemento);
+    }
+	else alert("Los campos están incompletos");
+}

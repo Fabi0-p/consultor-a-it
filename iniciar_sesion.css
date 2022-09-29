@@ -3,14 +3,9 @@
     background-color: #FFFEFE;
     margin: 1em;
     padding: 1em;
+    color: black;
 }
 
-#form_botones{
-    position: absolute;
-    bottom: 1em;
-    left: 0em;
-    width: 100%;
-}
 
 .btn-group, .btn-group-vertical{
     width: calc(100% - 2em);
