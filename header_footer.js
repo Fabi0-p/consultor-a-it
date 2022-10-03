@@ -1,7 +1,9 @@
 
 const header = `
   <header class="container-fluid row d-flex align-items-center" id="header">
-    <a href="pagina_principal.html" class="col-lg-8 col-xl-10 col-md-6 col-sm-6 col-12 my-3 m-sm-3"><h1 id="titulo"> Consultoría IT </h1></a>
+    <div class="col-lg-8 col-xl-10 col-md-6 col-sm-6 col-12 my-3 m-sm-3">
+      <a href="pagina_principal.html"><h1 class="d-inline w-auto" id="titulo"> Consultoría IT </h1></a>
+    </div>
     <a href="iniciar_sesion.html" id="iniciar_sesion" class="d-none d-sm-block m-3 col-lg col-xl col-sm col-md col btn btn-primary"> Iniciar Sesión</a>
     <nav class="col-12 d-flex flex-row justify-content-center justify-content-lg-center justify-content-sm-start align-items-stretch" id="navbar">
     <i class="fa-solid fa-bars d-block d-lg-none p-3" id="navbar-button" onclick="desplegarNavbar()"> </i>

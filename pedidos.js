@@ -97,3 +97,18 @@ function enviarPedido(){
 	$("#tarjetas").append(elemento.elemento);
     }
 }
+
+let form_desplegado = false;
+function desplegar_form(){
+    $("#form-pedido").toggleClass("d-none");
+    $("#form-pedido").toggleClass("d-block");
+    $("#btn_mostrar_form").toggleClass("d-none");
+    $("#btn_mostrar_form").toggleClass("d-block");
+
+    if(form_desplegado){
+	$("#texto").val("");
+	$("#titulo_pedido").val("");	
+    }
+
+    form_desplegado = !form_desplegado;
+}

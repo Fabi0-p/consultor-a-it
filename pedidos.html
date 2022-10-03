@@ -10,14 +10,17 @@
     <link rel="stylesheet" href="estilos_globales.css" type="text/css">
     <link rel="stylesheet" href="pedidos.css" type="text/css">
     <script src="script.js"> </script>
-    <title> Bienvenido a Consultoría IT</title>
+    <title> Mis Pedidos | Consultoría IT</title>
   </head>
   <body>
     <header> </header>
     <main id="main" class="container-fluid d-flex align-items-center flex-column d-sm-block">
       <br>
       <br>
-      <form id="form-pedido" class="container rounded shadow d-flex flex-column col-12 col-sm-11 col-md-8 col-lg-6 col-xl-5">
+      <div class="row container-fluid justify-content-center m-0">
+	<button type="button" id="btn_mostrar_form" onclick="desplegar_form()" class="btn btn-primary col-6"> <i class="fa-solid fa-circle-plus"> </i> Agregar Pedido </button>
+      </div>
+      <form id="form-pedido" class="container rounded shadow d-none d-flex flex-column col-12 col-sm-11 col-md-8 col-lg-6 col-xl-5">
 	<h3> Agregar Pedido </h3>
 	<label for="categoria" id="categoria_label" class="form-label"> Categoría </label>
 	<select placeholder="Categoría..." name="categoria" id="categoria" class="form-control" required>
@@ -35,6 +38,8 @@
 	<br>
 	<div id="alerta_texto" class="alerta"></div>
 	<button type="button" id="btn_registrar" onclick="enviarPedido()" class="btn btn-primary"> <i class="fa-solid fa-circle-plus"> </i> Agregar </button>
+	<br>
+	<button type="button" id="btn_ocultar_form" onclick="desplegar_form()" class="btn btn-danger"> Cancelar </button>
       </form>
       <br>
       <div class="container-fluid m-3">
